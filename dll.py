@@ -4,6 +4,18 @@ class Node:
         self.prev = prev
         self.next = next
 
+    def __lt__(self, other):
+        try:
+            return self.data < other.data
+        except:
+            pass
+
+    def __gt__(self, other):
+        try:
+            return self.data > other.data
+        except:
+            pass
+
 class DLL:
     def __init__(self):
         self.header = Node()
@@ -16,7 +28,7 @@ class DLL:
     def get_current_node(self, pos):
         """Navigate to correct node"""
         node = self.header
-        for _ in range(self.position):
+        for _ in range(pos):
             node = node.next
         return node
 
@@ -71,6 +83,7 @@ class DLL:
             self.position = pos+1
 
     def clear(self):
+        self.move_to_pos(0)
         for _ in range(self.size):
             self.remove()
 
@@ -81,10 +94,25 @@ class DLL:
         return self.trailer.prev
 
     def partition(self, low, high):
-        pass
+        k = 0
+        for _ in range(1,self.size+1):
+            if self.get_current_node(_) < low:
+                self.move_to_pos(_-1) 
+                node = self.remove()
+                self.move_to_pos(k)
+                self.insert(node) 
+                k+=1               
+        self.position = k+1
+        return k
 
-    def sort(self):
-        pass
+    def sort(self, low = None, high = None):
+        low = self.get_first_node()
+        high = self.get_last_node()
+        if low < high:
+            k = self.partition(low, high)
+            self.sort(k+1, high)
+            self.sort(low, k-1)
+
 
     def __len__(self):
         return self.size
@@ -100,4 +128,12 @@ class DLL:
 
 if __name__ == "__main__":
     #create tests here if you want
-    pass
+    test_array = [28, 26, 14, 27, 20, 20]
+    test_array.reverse()
+    dll = DLL()
+    for element in test_array:
+        dll.insert(element)
+
+    print(dll)
+    dll.partition(dll.get_first_node(), dll.get_last_node())
+    print(dll)

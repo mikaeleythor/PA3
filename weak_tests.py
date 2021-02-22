@@ -40,7 +40,7 @@ def main():
     print(str(dll) + "   -   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
     dll.insert("VALUE")
     print(str(dll) + "   -   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
-    dll.move_to_pos(8)
+    dll.move_to_pos(8) # af hverju?
     print(str(dll) + "   -   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
     dll.remove()
     print(str(dll) + "   -   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
@@ -89,6 +89,7 @@ def main():
     dll.move_to_pos(0)
     print(str(dll) + "   -   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
     dll.remove()
+    print('undir')
     print(str(dll) + "   -   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
     dll.remove()
     print(str(dll) + "   -   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
@@ -140,6 +141,7 @@ def main():
     dll.move_to_pos(4)
     print(str(dll) + "   -   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
     dll.partition(dll.get_first_node(), dll.get_last_node())
+    print('yu') #ath laga þarf partition
     print(str(dll) + "   -   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
     dll.sort()
     print(str(dll) + "   -   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
@@ -164,32 +166,32 @@ def main():
     print(str(dll) + "   -   current value: " + str(dll.position) + "   -   size: " + str(len(dll)))
     dll.move_to_next()
     print(str(dll) + "   -   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
-    # dll.remove()
-    # print(str(dll) + "   -   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
-    # dll.remove()
-    # print(str(dll) + "   -   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
-    # dll.remove()
-    # print(str(dll) + "   -   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
-    # dll.remove()
-    # print(str(dll) + "   -   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
-    # result = dll.get_first_node()
-    # if result != None:
-    #     result = result.data
-    # print("first node: ", str(result))
-    # print(str(dll) + "   -   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
-    # dll.move_to_prev()
-    # print(str(dll) + "   -   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
-    # dll.move_to_prev()
-    # print(str(dll) + "   -   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
-    # dll.remove()
-    # print(str(dll) + "   -   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
-    # result = dll.get_last_node()
-    # if result != None:
-    #     result = result.data
-    # print("last node: ", str(result))
-    # print(str(dll) + "   -   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
-    # dll.clear()
-    # print(str(dll) + "   -   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.remove()
+    print(str(dll) + "   -   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.remove()
+    print(str(dll) + "   -   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.remove()
+    print(str(dll) + "   -   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.remove()
+    print(str(dll) + "   -   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    result = dll.get_first_node()
+    if result != None:
+        result = result.data
+    print("first node: ", str(result))
+    print(str(dll) + "   -   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.move_to_prev()
+    print(str(dll) + "   -   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.move_to_prev()
+    print(str(dll) + "   -   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.remove()
+    print(str(dll) + "   -   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    result = dll.get_last_node()
+    if result != None:
+        result = result.data
+    print("last node: ", str(result))
+    print(str(dll) + "   -   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    dll.clear()
+    print(str(dll) + "   -   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
 
     sys.stdout = orig_stdout
     fout.close()
