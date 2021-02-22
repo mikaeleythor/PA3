@@ -21,13 +21,13 @@ class DLL:
         return node
 
     def relink(self, current, predecessor, successor):
-        """Link new node"""
-        current.next = successor # sama hvað current er, gildir alltaf (current er aldrei header)
+        """Relink nodes for inserting or after removing"""
+        current.next = successor                                # Current is never header
         try:
-            successor.prev = current # ef nonetype error kemur þá er successor = trailer
+            successor.prev = current 
         except AttributeError:
-            self.trailer.prev = current # búinn að tengja current við successor og öfuct fyrir delink og relink
-        if current != predecessor:
+            self.trailer.prev = current
+        if current != predecessor:                              # If function is not used to remove
             current.prev = predecessor
             try:
                 predecessor.next = current
@@ -36,23 +36,19 @@ class DLL:
 
     def insert(self, data):
         successor = self.get_current_node(self.position)
-        predecessor = successor.prev
         newest = Node(data, successor.prev, successor)
-        successor.prev = newest
-        self.relink(newest, predecessor, successor)
+        self.relink(newest, successor.prev, successor)
         self.size += 1
 
 
     def remove(self):
-        if self.size > 0:
+        if self.size > 0 and self.position <= self.size:
             removed = self.get_current_node(self.position)
             self.relink(removed.prev, removed.prev, removed.next)
             self.size -= 1
-            if self.position > self.size and self.position > 1:
-                self.position -= 1
             data = removed.data                                 # Record data deletion
             removed.data = removed.prev = removed.next = None   # Deprecate node
-            return data                                         # Return deleted data
+            return data                                         # Return deleted data    
         else:
             pass
 
@@ -61,17 +57,17 @@ class DLL:
         return node.data
 
     def move_to_next(self):
-        if self.position < self.size:
+        if self.position <= self.size:                          # Position can be trailer
             self.position += 1
         else:
             pass
 
-    def move_to_prev(self):
+    def move_to_prev(self):                                     # Position can not be header
         if self.position > 1:
             self.position -= 1
 
     def move_to_pos(self, pos):
-        if pos > 0 and pos < self.size:
+        if pos >= 0 and pos <= self.size:
             self.position = pos+1
 
     def clear(self):
@@ -104,28 +100,4 @@ class DLL:
 
 if __name__ == "__main__":
     #create tests here if you want
-    dll = DLL()
-    print(str(dll) + "   -   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
-    dll.insert("A")
-    print(str(dll) + "   -   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
-    dll.insert("B")
-    print(str(dll) + "   -   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
-    dll.insert("C")
-    print(str(dll) + "   -   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
-    dll.insert("D")
-    print(str(dll) + "   -   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
-    dll.insert("E")
-    print(str(dll) + "   -   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
-    dll.move_to_next()
-    print(str(dll) + "   -   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
-    dll.move_to_next()
-    print(str(dll) + "   -   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
-    # print(dll.position)
-    dll.insert("1")
-    print(str(dll) + "   -   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
-    dll.remove()
-    print(str(dll) + "   -   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
-    dll.remove()
-    print(str(dll) + "   -   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
-    dll.move_to_pos(2)
-    print(str(dll) + "   -   current value: " + str(dll.get_value()) + "   -   size: " + str(len(dll)))
+    pass
